@@ -141,6 +141,31 @@ id unread;
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
     }
+    else if([@"sendTokenToIntercom" isEqualToString:call.method]) {
+        NSString *token = call.arguments[@"token"];
+        if (token != nil) {
+            NSData * tokenData = [self dataFromHexString:token];
+            [Intercom setDeviceToken:tokenData];
+            result(@"Token sent to Intercom");
+        }
+    }
+    else if([@"requestNotificationPermissions" isEqualToString:call.method]) {
+    	dispatch_async(dispatch_get_main_queue(), ^{
+			UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+			UNAuthorizationOptions authorizationOptions = 0;
+			authorizationOptions += UNAuthorizationOptionSound;
+			authorizationOptions += UNAuthorizationOptionAlert;
+			authorizationOptions += UNAuthorizationOptionBadge;
+			[center requestAuthorizationWithOptions:(authorizationOptions) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+			  if (!granted || error != nil) {
+				result(@(NO));
+				return;
+			  } else {
+        		result(@(YES));
+			  }
+			}];
+    	});
+    }
     else {
         result(FlutterMethodNotImplemented);
     }
