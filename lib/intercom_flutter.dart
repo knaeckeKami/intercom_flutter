@@ -198,6 +198,7 @@ class Intercom {
         .invokeMethod<bool>('isIntercomPush', {'message': message});
   }
 
+
   static Future<void> handlePush(Map<String, dynamic> message) async {
     if (!message.values.every((item) => item is String)) {
       throw new ArgumentError(

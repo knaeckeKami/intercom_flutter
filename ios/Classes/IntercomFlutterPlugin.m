@@ -27,7 +27,6 @@ id unread;
     FlutterMethodChannel* channel =
     [FlutterMethodChannel methodChannelWithName:@"maido.io/intercom"
                                 binaryMessenger:[registrar messenger]];
-    id instance = [[IntercomFlutterPlugin alloc] initWithChannel:channel];
     [registrar addApplicationDelegate:instance];
     [registrar addMethodCallDelegate:instance channel:channel];
     FlutterEventChannel* unreadChannel = [FlutterEventChannel eventChannelWithName:@"maido.io/intercom/unread"
