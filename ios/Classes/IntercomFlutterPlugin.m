@@ -160,7 +160,7 @@ id unread;
               NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
               [Intercom setDeviceToken:encodedToken];
               result(@"Token set");
-           @catch ( NSException *e ) {
+           }@catch ( NSException *e ) {
               result(@"Error when setting token");
            }
         }
