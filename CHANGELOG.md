@@ -1,3 +1,16 @@
+## 2.3.1
+* Fix Android build issue
+* Updated Android dependencies
+
+## 2.3.0
+* Migrate Android side to Flutter's v2 Android Plugin APIs
+
+## 2.2.1
+* Implement sendTokenToIntercom method on iOS side to support push notifications
+
+## 2.2.0+1
+* Fix project dependencies
+
 ## 2.2.0
 * Added unread messages count listener
 
